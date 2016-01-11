@@ -9,7 +9,7 @@
     "prepublish": "npm run compile",
     "pretest": "npm run compile",
     "test": "tape 'lib/**/*.spec.js' | faucet",
-    "test:watch": "nodemon --watch lib -q -x 'tape 'lib/**/*.spec.js' | faucet'"
+    "test:watch": "nodemon --watch lib -q -x \"tape 'lib/**/*.spec.js' | faucet\""
   },
   "author": "Naissur <vlad.aituganov@gmail.com>",
   "preferGlobal": true,

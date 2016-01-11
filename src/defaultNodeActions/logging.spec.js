@@ -15,8 +15,8 @@ const utilsStub = {
   '@noCallThru': true
 };
 
-const def = proxyquire('./default', {'./utils': utilsStub});
-const {getInfoLogAction, getErrorLogAction, runLogAction} = def;
+const logging = proxyquire('./logging', {'./utils': utilsStub});
+const {getInfoLogAction, getErrorLogAction, runLogAction} = logging;
 
 
 

@@ -62,10 +62,10 @@ export function logPrettyCharsDiff(a, b) {
 
 let logHistory = [];
 
-export function log(){
-  logHistory.push(arguments);
+export function log(...args){
+  logHistory.push(args);
 
   if (console){
-    console.log( Array.prototype.slice.call(arguments) );
+    console.log(...args);
   }
 };

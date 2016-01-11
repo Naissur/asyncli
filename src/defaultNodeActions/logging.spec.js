@@ -139,7 +139,7 @@ test(`runLogAction(getErrorLogAction(...)) calls log() from 'log' module with co
 
   return runLogAction(getErrorLogAction(MESSAGE))
         .then( () => {
-          assert.deepEqual(logParams, [`${clc.bold.red('[Error]')} ${MESSAGE}`]);
+          assert.deepEqual(logParams, [clc.bold.red(`[Error] ${MESSAGE}`)]);
         });
 });
 

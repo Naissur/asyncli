@@ -39,9 +39,9 @@ export function runLogAction(logAction) {
 }
 
 function logInfo(message) {
-  log(clc.bold.green('[Info]') + ' ' + message)
+  log(clc.bold.green('[Info]') + ' ' + message);
 }
 
 function logError(message) {
-  log(clc.bold.red('[Error]') + ' ' + message)
+  log(clc.bold.red('[Error] ' + message));
 }

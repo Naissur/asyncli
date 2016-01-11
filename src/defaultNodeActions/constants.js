@@ -7,3 +7,5 @@ export const FS_MODIFY = 'FS_MODIFY';
 
 export const LOG_INFO = 'LOG_INFO';
 export const LOG_ERROR = 'LOG_ERROR';
+
+export const EXIT_ACTION = 'EXIT_ACTION';

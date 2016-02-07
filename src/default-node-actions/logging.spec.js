@@ -58,7 +58,7 @@ test('logError fails with invalid params correctly', () => {
         );
 
   const tests = [ 
-    123, {}, []
+    undefined, 123, {}, []
   ].map(wrapInInvertedAttempt);
 
 
@@ -74,7 +74,7 @@ test('logError fails with invalid params correctly', () => {
 
 test('runLogAction() returns a Nothing instance when called with an invalid descriptor', t => {
   const tests = [ 
-    1, {}, [],
+    undefined, 1, {}, [],
     {type: 1, message: null},
     {type: 'abc', message: null},
     {type: LOG_ERROR, message: null},

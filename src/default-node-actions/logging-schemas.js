@@ -1,4 +1,4 @@
-import {validate, addSchema} from './utils';
+import {validate} from './utils';
 
 export const LOG_INFO = 'LOG_INFO';
 export const LOG_ERROR = 'LOG_ERROR';
@@ -7,13 +7,6 @@ const LOG_INFO_ACTION_SCHEMA_ID = '/LogInfoAction';
 const LOG_ERROR_ACTION_SCHEMA_ID = '/LogErrorAction';
 const LOG_ACTION_SCHEMA_ID = '/LogAction';
 
-const LOG_ACTION_SCHEMA = {
-  'id': LOG_ACTION_SCHEMA_ID,
-  'oneOf': [
-      { '$ref': LOG_INFO_ACTION_SCHEMA_ID},
-      { '$ref': LOG_ERROR_ACTION_SCHEMA_ID}
-  ]
-}
 
 const LOG_INFO_ACTION_SCHEMA = {
   'type': 'object',
@@ -53,12 +46,19 @@ const LOG_ERROR_ACTION_SCHEMA = {
   ] 
 };
 
-addSchema(LOG_INFO_ACTION_SCHEMA, '/LogInfoAction');
-addSchema(LOG_ERROR_ACTION_SCHEMA, '/LogErrorAction');
+const LOG_ACTION_SCHEMA = {
+  'id': LOG_ACTION_SCHEMA_ID,
+  'type': 'object',
+  'oneOf': [
+    LOG_INFO_ACTION_SCHEMA,
+    LOG_ERROR_ACTION_SCHEMA
+  ]
+}
 
 
-export const validateLogInfoAction = validate(LOG_INFO_ACTION_SCHEMA);
-export const validateLogErrorAction = validate(LOG_INFO_ACTION_SCHEMA);
-export const validateLogAction = validate(LOG_ACTION_SCHEMA);
+
+export const validateLogInfoAction = x => validate(LOG_INFO_ACTION_SCHEMA, x);
+export const validateLogErrorAction = x => validate(LOG_INFO_ACTION_SCHEMA, x);
+export const validateLogAction = x => validate(LOG_ACTION_SCHEMA, x);
 
 

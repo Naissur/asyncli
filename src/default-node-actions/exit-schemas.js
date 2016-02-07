@@ -16,5 +16,5 @@ const EXIT_ACTION_SCHEMA = {
   'required': [ 'type' ]
 };
 
-export const validateExitAction = validate(EXIT_ACTION_SCHEMA);
+export const validateExitAction = x => validate(EXIT_ACTION_SCHEMA, x);
 

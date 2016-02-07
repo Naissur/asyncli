@@ -1,6 +1,7 @@
-import {curry} from 'ramda';
+import is from 'is';
 import {Maybe} from 'ramda-fantasy';
 const {Just, Nothing} = Maybe;
+
 
 // ==================== //
 // =    validation    = //
@@ -9,11 +10,11 @@ const {Just, Nothing} = Maybe;
 import {Validator} from 'jsonschema';
 const v = new Validator();
 
-export const validate = curry( (schema, obj) => (
-  wrapInValidateMaybe(v.validate(obj, schema))
-));
+export const validate = (schema, obj) => {
+  if (!is.defined(obj)) return Nothing();
 
-export const addSchema = (schema, id) => v.addSchema(schema, id);
+  return wrapInValidateMaybe(v.validate(obj, schema))
+}
 
 export const wrapInValidateMaybe = validationResult => (
   validationResult.valid ? Just(validationResult.instance) : Nothing()

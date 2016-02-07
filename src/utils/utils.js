@@ -9,7 +9,7 @@ export function isGenerator(x) {
 }
 
 export function isGeneratorFunction(x) {
-  if (!is.defined(x)) return false;
+  if (!is.defined(x) || is.nil(x)) return false;
   const constructor = x.constructor;
   if (!constructor) return false;
   if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) return true;

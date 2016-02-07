@@ -1,12 +1,12 @@
 import is from 'is';
-// import Promise from 'bluebird';
 import co from 'co-dispatchable';
-import defaultYieldHandler from 'co-dispatchable/lib/co-handler';
+import defaultYieldHandler from './default-node-actions';
+import {isGeneratorFunction} from './utils';
 
 
 export default function runCli(generator, yieldHandler = defaultYieldHandler) {
-  if (!is.fn(yieldHandler)) throw `runCli: ${ JSON.stringify(yieldHandler) } is not a valid function`;
-  if (!is.fn(generator)) throw `runCli: ${ JSON.stringify(generator) } is not a valid generator`;
+  if (!isGeneratorFunction(generator)) throw new Error(`runCli: ${ JSON.stringify(generator) } is not a generator function`);
+  if (!is.fn(yieldHandler)) throw new Error(`runCli: ${ JSON.stringify(yieldHandler) } is not a function`);
 
   return co(generator, yieldHandler);
 }

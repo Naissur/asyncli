@@ -9,7 +9,7 @@ const {Just, Nothing} = Maybe;
 
 export function logInfo(msg) {
   if (!is.string(msg) || is.empty(msg)) {
-    throw `logInfo: ${ JSON.stringify(msg) } is not a valid message`;
+    throw new Error(`logInfo: ${ JSON.stringify(msg) } is not a valid message`);
   }
 
   return {
@@ -20,7 +20,7 @@ export function logInfo(msg) {
 
 export function logError(msg) {
   if (!is.string(msg) || is.empty(msg)) {
-    throw `logError: ${ JSON.stringify(msg) } is not a valid message`;
+    throw new Error(`logError: ${ JSON.stringify(msg) } is not a valid message`);
   }
 
   return {

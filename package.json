@@ -4,12 +4,17 @@
   "description": "A library for helping with cli interactions, based on es6 generators and async functions",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf lib/*",
+    "precompile:sourcemaps": "npm run clean",
+    "compile:sourcemaps": "babel --source-maps inline src/ -d lib",
     "compile": "babel --presets es2015 src/ -d lib",
     "dev": "npm run test:watch & ./node_modules/.bin/babel -w --presets es2015 src/ -d lib",
     "prepublish": "npm run compile",
     "pretest": "npm run compile",
-    "test": "tape 'lib/**/*.spec.js' | faucet",
-    "test:watch": "nodemon --watch lib -q -x \"tape 'lib/**/*.spec.js' | faucet\""
+    "test": "tap 'lib/**/*.spec.js'",
+    "test:watch": "nodemon --watch lib -q -x \"tap 'lib/**/*.spec.js'\"",
+    "precoverage": "npm run compile:sourcemaps",
+    "coverage": "tap --cov 'lib/**/*.spec.js'"
   },
   "author": "Naissur <vlad.aituganov@gmail.com>",
   "preferGlobal": true,
@@ -48,7 +53,8 @@
     "bluebird": "3.1.1",
     "faucet": "0.0.1",
     "jsverify": "0.7.1",
-    "proxyquire": "1.7.3"
+    "proxyquire": "1.7.3",
+    "tap": "5.4.2"
   },
   "keywords": [
     "async",

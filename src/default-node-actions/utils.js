@@ -1,35 +1,6 @@
 const clc = require('cli-color');
 const jsdiff = require('diff');
-import is from 'is';
 
-export function logFunctionExecution(logStartMessage, logEndMessageFromMs, logErrorMessageFromError, fn) {
-  const timeStarted = new Date();
-  logStartMessage();
-
-  let result;
-
-  try {
-    result = fn();
-
-    if (is.defined(result) && is.defined(result.then)) { //if returns a promise
-      return result.then(
-        () => {
-          const ms = ((new Date()) - timeStarted);
-          logEndMessageFromMs(ms);
-        },
-        error => logErrorMessageFromError(error)
-      )
-    }
-
-    const ms = ((new Date()) - timeStarted);
-    logEndMessageFromMs(ms);
-
-  } catch (e) {
-    logErrorMessageFromError(e)
-  }
-
-  return result;
-}
 
 export function logPrettyLinesDiff(a, b) {
   const diff = jsdiff.diffLines(a, b);

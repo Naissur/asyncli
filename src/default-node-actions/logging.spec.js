@@ -109,7 +109,7 @@ test('runLogAction() returns a Left instance when called with an invalid descrip
 
     got.bimap(      //for lack of isLeft in the current version
       val => {
-        t.equal(val, `executeLogAction: ${ JSON.stringify(args) } is not a valid message format`);
+        t.equal(val, `runLogAction: ${ JSON.stringify(args) } is not a valid message format`);
       }, 
       () => t.fail(`expected to be a Left instance on ${JSON.stringify(args)}`)
     );

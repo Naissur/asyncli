@@ -32,7 +32,7 @@ export function logError(msg) {
 
 export function runLogAction(logAction) {
   const validationResult = validateLogAction(logAction);
-  if (validationResult.isNothing()) return Left(`executeLogAction: ${ JSON.stringify(logAction) } is not a valid message format`);
+  if (validationResult.isNothing()) return Left(`runLogAction: ${ JSON.stringify(logAction) } is not a valid message format`);
 
   const instance = validationResult.getOrElse({});
   const {message, type} = instance;

@@ -11,7 +11,7 @@ const LOG_ERROR_ACTION_SCHEMA_ID = "/LogErrorAction";
 const LOG_ACTION_SCHEMA_ID = "/LogAction";
 
 const LOG_ACTION_SCHEMA = {
-  "id": "/LogAction",
+  "id": LOG_ACTION_SCHEMA_ID,
   "oneOf": [
       { "$ref": LOG_INFO_ACTION_SCHEMA_ID},
       { "$ref": LOG_ERROR_ACTION_SCHEMA_ID}

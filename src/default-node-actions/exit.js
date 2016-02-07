@@ -1,5 +1,9 @@
 import {EXIT_ACTION} from './constants';
-import {EXIT_ACTION_SCHEMA} from './schemas';
+import {validateExitAction} from './exit-schemas';
+
+import {Either} from 'ramda-fantasy';
+const {Left, Right} = Either;
+
 
 export function getExitAction() {
   return {
@@ -8,11 +12,11 @@ export function getExitAction() {
 }
 
 export function runExitAction(action) {
-  return EXIT_ACTION_SCHEMA.validate(action, {strict: true})
-        .catch(() => {
-          throw `runExitAction: ${ JSON.stringify(action) } is not a valid command`;
-        })
-        .then( () => {
-          process.exit(0);
-        });
+  const validationResult = validateExitAction(action);
+
+  if (validationResult.isNothing()) return Left(`runExitAction: ${ JSON.stringify(action) } is not a valid action descriptor`);
+
+  process.exit(0);
+  return Right(true);
 }
+

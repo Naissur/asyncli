@@ -1,5 +1,4 @@
-import {EXIT_ACTION} from './constants';
-import {validateExitAction} from './exit-schemas';
+import {EXIT_ACTION, validateExitAction} from './exit-schemas';
 
 import {Either} from 'ramda-fantasy';
 const {Left, Right} = Either;

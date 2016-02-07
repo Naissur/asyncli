@@ -1,6 +1,5 @@
 import is from 'is';
-import {LOG_INFO, LOG_ERROR} from './constants';
-import {validateLogAction} from './logging-schemas';
+import {LOG_INFO, LOG_ERROR, validateLogAction} from './logging-schemas';
 import {log} from './utils';
 import {match, when} from 'match-when';
 const clc = require('cli-color');

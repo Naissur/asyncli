@@ -1,9 +1,11 @@
 import test from 'blue-tape';
 import jsc from 'jsverify';
-import {expectToFailWith} from '../test-utils';
 import _ from 'ramda';
 import Promise from 'bluebird';
-import {LOG_INFO, LOG_ERROR} from './constants';
+import {expectToFailWith} from '../test-utils';
+
+
+import {LOG_INFO, LOG_ERROR} from './logging-schemas';
 import proxyquire from 'proxyquire';
 const clc = require('cli-color');
 

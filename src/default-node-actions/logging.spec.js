@@ -1,12 +1,14 @@
 import test from 'blue-tape';
-import jsc from 'jsverify';
-import _ from 'ramda';
 import Promise from 'bluebird';
 import {expectToFailWith} from '../test-utils';
+
+import {Maybe} from 'ramda-fantasy';
+const {Nothing} = Maybe;
 
 
 import {LOG_INFO, LOG_ERROR} from './logging-schemas';
 import proxyquire from 'proxyquire';
+
 const clc = require('cli-color');
 
 // proxy require default with stubbed log
@@ -40,18 +42,6 @@ test('logInfo fails with invalid params correctly', () => {
   return Promise.all(tests);
 });
 
-test('logInfo returns a valid action format', () => {
-  const tests = jsc.forall(
-    'nestring',
-    message => (
-      _.equals({ type: LOG_INFO, message }, logInfo(message))
-    )
-  );
-   
-  return Promise.attempt(() => jsc.assert(tests));
-});
-
-
 
 
 
@@ -75,17 +65,6 @@ test('logError fails with invalid params correctly', () => {
   return Promise.all(tests);
 });
 
-test('logError returns a valid action format', () => {
-  const tests = jsc.forall(
-    'nestring',
-    message => (
-      _.equals({ type: LOG_ERROR, message }, logError(message))
-    )
-  );
-   
-  return Promise.attempt(() => jsc.assert(tests));
-});
-
 
 
 // ===================== //
@@ -93,7 +72,7 @@ test('logError returns a valid action format', () => {
 // ===================== //
 
 
-test('runLogAction() returns a Left instance when called with an invalid descriptor', t => {
+test('runLogAction() returns a Nothing instance when called with an invalid descriptor', t => {
   const tests = [ 
     1, {}, [],
     {type: 1, message: null},
@@ -108,13 +87,7 @@ test('runLogAction() returns a Left instance when called with an invalid descrip
 
   tests.forEach(args => {
     const got = runLogAction(args);
-
-    got.bimap(      //for lack of isLeft in the current version
-      val => {
-        t.equal(val, `runLogAction: ${ JSON.stringify(args) } is not a valid message format`);
-      }, 
-      () => t.fail(`expected to be a Left instance on ${JSON.stringify(args)}`)
-    );
+    t.deepEqual(got, Nothing(), `expected to be a Nothing instance on ${JSON.stringify(args)}`)
   });
 
    

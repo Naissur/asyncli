@@ -4,8 +4,8 @@ import {log} from './utils';
 import {match, when} from 'match-when';
 const clc = require('cli-color');
 
-import {Either} from 'ramda-fantasy';
-const {Left, Right} = Either;
+import {Maybe} from 'ramda-fantasy';
+const {Just, Nothing} = Maybe;
 
 export function logInfo(msg) {
   if (!is.string(msg) || is.empty(msg)) {
@@ -31,19 +31,19 @@ export function logError(msg) {
 
 export function runLogAction(logAction) {
   const validationResult = validateLogAction(logAction);
-  if (validationResult.isNothing()) return Left(`runLogAction: ${ JSON.stringify(logAction) } is not a valid message format`);
+  if (validationResult.isNothing()) return Nothing();
 
   const instance = validationResult.getOrElse({});
   const {message, type} = instance;
 
   return match({
-    [when(LOG_INFO)]: () => Right(runLogInfo(message)),
-    [when(LOG_ERROR)]: () => Right(runLogError(message))
+    [when(LOG_INFO)]: () => Just(runLogInfo(message)),
+    [when(LOG_ERROR)]: () => Just(runLogError(message))
   })(type);
 }
 
 function runLogInfo(message) {
-  log(clc.bold.green('[Info]') + ' ' + message);
+  log(`${ clc.bold.green('[Info]') } ${ message }`);
   return true;
 }
 

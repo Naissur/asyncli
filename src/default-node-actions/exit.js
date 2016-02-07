@@ -1,10 +1,10 @@
 import {EXIT_ACTION, validateExitAction} from './exit-schemas';
 
-import {Either} from 'ramda-fantasy';
-const {Left, Right} = Either;
+import {Maybe} from 'ramda-fantasy';
+const {Just, Nothing} = Maybe;
 
 
-export function getExitAction() {
+export function exit() {
   return {
     type: EXIT_ACTION
   };
@@ -12,10 +12,9 @@ export function getExitAction() {
 
 export function runExitAction(action) {
   const validationResult = validateExitAction(action);
-
-  if (validationResult.isNothing()) return Left(`runExitAction: ${ JSON.stringify(action) } is not a valid action descriptor`);
+  if (validationResult.isNothing()) return Nothing();
 
   process.exit(0);
-  return Right(true);
+  return Just(true);
 }
 

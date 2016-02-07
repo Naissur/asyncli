@@ -1,7 +1,7 @@
 import test from 'blue-tape';
 import {getExitAction, runExitAction} from './exit';
 import {EXIT_ACTION} from './constants';
-import {expectToFailWith} from '../testUtils';
+import {expectToFailWith} from '../test-utils';
 import Promise from 'bluebird';
 import assert from 'assert';
 import is from 'is';

@@ -1,14 +1,8 @@
 import yup from 'yup';
 // import is from 'is';
-import {LOG_INFO, LOG_ERROR, EXIT_ACTION} from './constants';
+import {LOG_ERROR, EXIT_ACTION} from './constants';
 import Promise from 'bluebird';
 
-
-export const LOG_INFO_ACTION_SCHEMA = 
-  yup.object().required().shape({
-    type: yup.mixed().oneOf([LOG_INFO]),
-    message: yup.string().required()
-  });
 
 export const LOG_ERROR_ACTION_SCHEMA = 
   yup.object().required().shape({

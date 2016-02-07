@@ -1,4 +1,6 @@
+import runCli from './run-cli';
+import combineYieldHandlers from 'co-dispatchable';
 
-import {add} from './runCli';
-
-module.exports = add;
+module.exports = {
+  runCli, combineYieldHandlers
+}

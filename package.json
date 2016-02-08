@@ -14,7 +14,8 @@
     "test": "tap 'lib/**/*.spec.js'",
     "test:watch": "nodemon --watch lib -q -x \"tap 'lib/**/*.spec.js'\"",
     "precoverage": "npm run compile:sourcemaps",
-    "coverage": "tap --cov 'lib/**/*.spec.js'"
+    "coverage": "tap --cov 'lib/**/*.spec.js'",
+    "lint": "eslint -c .eslintrc src/**"
   },
   "author": "Naissur <vlad.aituganov@gmail.com>",
   "preferGlobal": true,
@@ -45,6 +46,7 @@
     "jsonschema": "1.0.3",
     "match-when": "2.0.0",
     "ramda": "0.19.1",
+    "ramda-fantasy": "0.4.1",
     "xtend": "4.0.1"
   },
   "devDependencies": {

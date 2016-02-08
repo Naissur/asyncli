@@ -1,7 +1,6 @@
 import is from 'is';
 import {LOG_INFO, LOG_ERROR, validateLogAction} from './logging-schemas';
 import {log} from './utils';
-import {match, when} from 'match-when';
 const clc = require('cli-color');
 
 import {Maybe} from 'ramda-fantasy';
@@ -36,10 +35,11 @@ export function runLogAction(logAction) {
   const instance = validationResult.getOrElse({});
   const {message, type} = instance;
 
-  return match({
-    [when(LOG_INFO)]: () => Just(runLogInfo(message)),
-    [when(LOG_ERROR)]: () => Just(runLogError(message))
-  })(type);
+  switch (type) {
+    case LOG_INFO: return Just(runLogInfo(message));
+    case LOG_ERROR: return Just(runLogError(message));
+    default: return Nothing();
+  }
 }
 
 function runLogInfo(message) {

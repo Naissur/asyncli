@@ -44,7 +44,6 @@
     "eslint-plugin-babel": "3.0.0",
     "is": "3.1.0",
     "jsonschema": "1.0.3",
-    "match-when": "2.0.0",
     "ramda": "0.19.1",
     "ramda-fantasy": "0.4.1",
     "xtend": "4.0.1"
